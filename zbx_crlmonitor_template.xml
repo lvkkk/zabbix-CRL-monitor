@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-06-14T15:27:25Z</date>
+    <groups>
+        <group>
+            <name>Certificate refovation lists monitor</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template CRL expiration</template>
+            <name>Template CRL expiration</name>
+            <groups>
+                <group>
+                    <name>Certificate refovation lists monitor</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>CRL expiration time</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>CRL expiration time</name>
+                    <type>TRAP</type>
+                    <key>exptime</key>
+                    <delay>0</delay>
+                    <units>s</units>
+                    <applications>
+                        <application>
+                            <name>CRL expiration time</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata(1800)}=1</expression>
+                            <name>CRL unavailable</name>
+                            <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>CRL</tag>
+                                    <value>Expiration</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                        <trigger>
+                            <expression>{last()}&lt;-600</expression>
+                            <name>Expirtaion</name>
+                            <priority>HIGH</priority>
+                            <tags>
+                                <tag>
+                                    <tag>CRL</tag>
+                                    <value>Expiration</value>
+                                </tag>
+                            </tags>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
