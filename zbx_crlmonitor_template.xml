@@ -46,7 +46,7 @@
                             </tags>
                         </trigger>
                         <trigger>
-                            <expression>{last()}&lt;-600</expression>
+                            <expression>{last()}&lt;1800</expression>
                             <name>Expirtaion</name>
                             <priority>HIGH</priority>
                             <tags>
