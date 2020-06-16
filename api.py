@@ -27,7 +27,7 @@ def getTime(url):
     print("CRL:\t", url, "\nDownload error!")
     return 0
   CRL = cryptography.x509.load_der_x509_crl(crlData, default_backend())
-  return int(CRL.next_update.timestamp() - CRL.next_update.now().timestamp())
+  return int(CRL.next_update.timestamp() - CRL.next_update.utcnow().timestamp())
 
 def sendToZbx(zbxhost, host, key, timestamp):
   data='{"request":"sender data","data":[{"host":"'+ host +'","key":"'+ key +'","value":"' + str(timestamp) + '"}]}'
